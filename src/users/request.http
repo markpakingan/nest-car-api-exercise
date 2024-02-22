@@ -7,3 +7,14 @@ Content-Type: application/json
     "email": "ejbaho@yahoo.com", 
     "password" : "hellobaby"
 } 
+
+
+###Find a particular user with a given ID:
+
+GET http://localhost:3000/auth/1
+
+
+###Find a particular user based on email:
+
+GET http://localhost:3000/auth?email=testuser@yahoo.com
+
