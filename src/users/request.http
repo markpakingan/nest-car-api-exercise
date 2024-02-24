@@ -11,8 +11,7 @@ Content-Type: application/json
 
 ###Find a particular user with a given ID:
 
-GET http://localhost:3000/auth/1
-
+GET http://localhost:3000/auth/2
 
 ###Find a particular user based on email:
 
@@ -21,10 +20,11 @@ GET http://localhost:3000/auth?email=testuser@yahoo.com
 
 
 ###Remove a user/with a particular id : 
-DELETE http://localhost:3000/auth/1
+DELETE http://localhost:3000/auth/12122 
 
 ### Update a user
-PATCH  http://localhost:3000/auth/3
+PATCH  http://localhost:3000/auth/123123234 
+
 content-type: application/json
 
 {
