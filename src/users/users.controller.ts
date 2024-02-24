@@ -3,7 +3,7 @@ import { Body, Controller, Post, Get, Patch, Param, Query, Delete, NotFoundExcep
 import {CreateUserDto}  from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
-
+import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
 
 
 @Controller('auth')
@@ -15,9 +15,11 @@ export class UsersController {
         this.usersService.create(body.email, body.password)
     }
 
-    @UseInterceptors(ClassSerializerInterceptor)
+    @UseInterceptors(SerializeInterceptor)
     @Get('/:id')
     async findUser(@Param('id') id: string){
+
+        console.log('handler is running');
         const user = await this.usersService.findOne(parseInt(id));
 
         if(!user){
