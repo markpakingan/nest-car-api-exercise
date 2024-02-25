@@ -10,12 +10,11 @@ Content-Type: application/json
 
 
 ###Find a particular user with a given ID:
-
 GET http://localhost:3000/auth/3
 
 ###Find a particular user based on email:
 
-GET http://localhost:3000/auth?email=testuser@yahoo.com
+GET http://localhost:3000/auth?email=ejbaho@yahoo.com
 
 
 
