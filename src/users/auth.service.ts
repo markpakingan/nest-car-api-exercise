@@ -16,7 +16,8 @@
         //see if email is in use
 
         const users = await this.usersService.find(email);
-        if(users){
+
+        if(users.length){
             throw new BadRequestException('email in use')
         }
 
@@ -28,12 +29,13 @@
 
 
         //Join the hashed result and the salt together
-        const userPassword = salt + "." + hash.toString('hex')
+        const result = salt + "." + hash.toString('hex')
 
         //Create a new user and save it
-
+        const user = await this.usersService.create(email, result);
     
         //Return the user
+        return user; 
     }
 
     signin() {
