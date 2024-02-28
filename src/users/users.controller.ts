@@ -15,13 +15,17 @@ export class UsersController {
         private authService : AuthService){}
 
     @Post('/signup')
-    createUser(@Body() body: CreateUserDto){
-        return this.authService.signup(body.email, body.password);
+    async createUser(@Body() body: CreateUserDto, @Session() session : any){
+        const user =  await this.authService.signup(body.email, body.password);
+        session.userId = user.id;
+        return user; 
     }
 
     @Post('signin')
-    signInUser(@Body() body: CreateUserDto){
-        return this.authService.signin(body.email, body.password);
+    async signInUser(@Body() body: CreateUserDto, @Session() session: any){
+        const user = await this.authService.signin(body.email, body.password);
+        session.userId = user.id;
+        return user;
     }
 
     @Get('/colors/:color')
