@@ -30,3 +30,10 @@ content-type: application/json
     "password" : "asfsfsdfsdf"
 }
  
+
+### Set a color
+Get http://localhost:3000/auth/colors/blue 
+
+
+### Get a color
+Get http://localhost:3000/auth/colors 
