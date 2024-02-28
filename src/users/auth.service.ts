@@ -2,7 +2,7 @@
  import { UsersService } from "./users.service";
  import { randomBytes, scrypt as _scrypt } from "crypto";
  import { promisify } from "util";
-import { NotFoundError } from "rxjs";
+ import { NotFoundError } from "rxjs";
 
 
  const scrypt = promisify(_scrypt);
