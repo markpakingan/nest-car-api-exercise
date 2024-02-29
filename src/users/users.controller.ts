@@ -14,6 +14,10 @@ export class UsersController {
         private usersService: UsersService,
         private authService : AuthService){}
 
+    @Get('/whoami')
+    whoAmI(@Session() session: any){
+        return this.usersService.findOne(session.userId);
+    }
     @Post('/signup')
     async createUser(@Body() body: CreateUserDto, @Session() session : any){
         const user =  await this.authService.signup(body.email, body.password);
@@ -28,15 +32,19 @@ export class UsersController {
         return user;
     }
 
-    @Get('/colors/:color')
-    setColor(@Param('color') color: string, @Session() session: any ){
-        session.color = color;
+    @Post('/signout')
+    async signout(@Session() session: any){
+        session.userId = null;
     }
+    // @Get('/colors/:color')
+    // setColor(@Param('color') color: string, @Session() session: any ){
+    //     session.color = color;
+    // }
 
-    @Get('/colors')
-    getColor(@Session() session: any){
-        return session.color
-    }
+    // @Get('/colors')
+    // getColor(@Session() session: any){
+    //     return session.color
+    // }
 
 
     @Get('/:id')
