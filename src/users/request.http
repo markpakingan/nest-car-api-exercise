@@ -18,7 +18,7 @@ Content-Type: application/json
 } 
 
 
-### Sign in as an existing user
+### Check the existing user
 GET http://localhost:3000/auth/whoami
 
 
