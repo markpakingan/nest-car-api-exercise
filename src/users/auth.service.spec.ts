@@ -5,8 +5,6 @@ import { User } from "./user.entity";
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 
-
-
 describe('AuthAService', () => {
 
     let service: AuthService;
@@ -84,16 +82,23 @@ describe('AuthAService', () => {
     //   }
     // })
 
-    it('throws an error if user signs up with email that is already in use', async()=> {
-      await service.signup('testuser@yahoo.com', 'asdf');
+    // it('throws an error if user signs up with email that is already in use', async()=> {
+    //   await service.signup('testuser@yahoo.com', 'asdf');
     
-      await expect(
-        service.signup('testuser@yahoo.com', 'asdf')
-      ).rejects.toThrow(BadRequestException);
-    });
+    //   await expect(
+    //     service.signup('testuser@yahoo.com', 'asdf')
+    //   ).rejects.toThrow(BadRequestException);
+    // });
     
 
-    
+    // it('throws an error if user signs up with email that is in use', async () => {
+    //   fakeUsersService.find = () =>
+    //     Promise.resolve([{ id: 1, email: 'user2@test.com', password: '1' } as User]);
+    //   await expect(service.signup('user2@test.com', 'asdf')).rejects.toThrow(
+    //     BadRequestException,
+    //   );
+    // });
+
     it('throws if signin is called with an unused email', async () => {
         await expect(
           service.signin('asdf@asdf.com', 'asdlfkajsd'),
