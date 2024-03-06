@@ -43,6 +43,8 @@
 
         const [user] = await this.usersService.find(email);
 
+        console.log("user:", [user]);
+
         if (!user){
             throw new NotFoundException('user not found')
         }

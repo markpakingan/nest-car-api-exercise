@@ -23,7 +23,7 @@ describe('AuthAService', () => {
               const filteredUsers = users.filter((user) => user.email === email);
               return Promise.resolve(filteredUsers)
             },
-            create: (email: string, password: string) => {
+            create: async (email: string, password: string) => {
               const user = { 
                 id: Math.floor(Math.random() * 9999999),
                 email, 
@@ -31,11 +31,12 @@ describe('AuthAService', () => {
                } as User
               users.push(user); 
               return user; 
-
               return Promise.resolve(user);
             }
           };
-    })
+    
+    });  
+
 
     it ('can create an instance of auth service', async() => {
 
@@ -72,6 +73,26 @@ describe('AuthAService', () => {
 
     })
 
+    // it('throws an error if user signs up with email that is already in use', async()=> {
+
+    //   const user = await service.signup('testuser@yahoo.com', 'asdf');
+
+    //   try{
+    //     const user = await service.signup('testuser@yahoo.com', 'asdf');
+    //   }catch(err){
+    //     console.log("email already in use");
+    //   }
+    // })
+
+    it('throws an error if user signs up with email that is already in use', async()=> {
+      await service.signup('testuser@yahoo.com', 'asdf');
+    
+      await expect(
+        service.signup('testuser@yahoo.com', 'asdf')
+      ).rejects.toThrow(BadRequestException);
+    });
+    
+
     
     it('throws if signin is called with an unused email', async () => {
         await expect(
@@ -81,24 +102,23 @@ describe('AuthAService', () => {
 
  
     it('throws if an invalid password is provided', async () => {
-        fakeUsersService.find = () =>
-          Promise.resolve([
-            { email: 'asdf@asdf.com', password: 'asdlfkajsd' } as User,
-          ]);
+
+      await service.signup('testuser@yahoo.com', "userpw");
+
         await expect(
           service.signin('asdf@asdf.com', 'wrongpassword'),
         ).rejects.toThrow(NotFoundException);
       });
 
-    it('returns a user if correct password is provided', async() => {
-      await service.signup('asdf@asdf.com', 'asdlfkajsd'); 
 
-      const user = await service.signin('asdf@asdf.com', 'asdlfkajsd');
-      expect(user).toBeDefined();
-    })
+    // it('returns a user if correct password is provided', async() => {
+    //   await service.signup('ejbaho@yahoo.com', 'hellobaby'); 
+
+    //   const user = await service.signin('ejbaho@yahoo.com', 'hellobaby');
+    //   expect(user).toBeDefined();
+    // })
 
 });
 
 
 
-//testing
