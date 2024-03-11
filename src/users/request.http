@@ -4,8 +4,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "user3@test.com", 
-    "password" : "user3"
+    "email": "user4@test.com", 
+    "password" : "user4"
 } 
 
 ###Get the signedin user
@@ -55,3 +55,6 @@ Get http://localhost:3000/auth/colors/blue
 
 ### Get a color
 Get http://localhost:3000/auth/colors 
+
+
+# testing
