@@ -4,8 +4,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "user2@test.com", 
-    "password" : "user1"
+    "email": "user3@test.com", 
+    "password" : "user3"
 } 
 
 ###Get the signedin user
@@ -16,7 +16,7 @@ Content-Type: application/json
     "email": "user1@test.com", 
     "password" : "user1"
 } 
-
+ 
 
 ### Check the existing user
 GET http://localhost:3000/auth/whoami

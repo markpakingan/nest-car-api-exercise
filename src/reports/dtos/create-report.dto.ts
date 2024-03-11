@@ -1,8 +1,6 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsNumber, IsString, Min, Max, IsLatitude, IsLongitude} from "class-validator";
 
 export class CreateReportDto{
-
-    // make, model, year, mileage, lng, lat, price
 
 
     @IsString()
@@ -12,15 +10,24 @@ export class CreateReportDto{
     model : string; 
 
     @IsNumber()
+    @Min(1930)
+    @Max(2050)
     year: number;
 
-    @IsString()
+    @IsNumber()
+    @Min(0)
+    @Max(1000000)
+    mileage: number;
+
+    @IsLongitude()
     lng: string; 
 
-    @IsString()
+    @IsLatitude()
     lat: string;
 
     @IsNumber()
+    @Min(0)
+    @Max(1000000)
     price: number;
-    
+
 }
