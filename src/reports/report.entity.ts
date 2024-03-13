@@ -1,6 +1,7 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
 import { User } from 'src/users/user.entity';
 
+
 @Entity()
 
 export class Report {
@@ -34,6 +35,6 @@ export class Report {
 
 
     @ManyToOne(()=> User, (user)=> user.reports)
-    users: User[];
+    user: User;
 
 }
