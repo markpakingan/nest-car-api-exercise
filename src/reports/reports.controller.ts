@@ -5,13 +5,17 @@ import { CreateReportDto } from './dtos/create-report.dto';
 import { AuthGuard } from 'src/users/guards/auth.guards';
 import { CurrentUser } from 'src/users/decorators/current-user.decorators';
 import { User } from 'src/users/user.entity';
+import { ReportDto } from './dtos/report.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { ApproveReportDto } from './dtos/approve-report.dto';
 
 @Controller('reports')
 export class ReportsController {
     constructor(private reportsService: ReportsService){}
 
     @Post()
-    @UseGuards(AuthGuard )
+    @UseGuards(AuthGuard)
+    @Serialize(ReportDto)
         createReport(@Body() body: CreateReportDto, @CurrentUser() user: User){
             return this.reportsService.create(body, user);
             // const car = await this.reportService.create(body.make, 
@@ -19,6 +23,12 @@ export class ReportsController {
              
             //     return car;
         }
+
+    @Patch('/:id')
+    approveReport(@Param('id') id: string, @Body() body: ApproveReportDto){
+        
+    }
+     
     
 
     // @Get('/reports'){

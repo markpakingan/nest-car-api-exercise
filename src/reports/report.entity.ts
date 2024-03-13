@@ -14,6 +14,8 @@ export class Report {
 
     // make, model, year, mileage, latitude, longtitude
 
+    @Column( { default: false})
+    approved: boolean; 
 
     @Column()
     make: string;
